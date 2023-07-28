@@ -22,23 +22,38 @@ function Image(props) {
   );
 }
 
-function Gallery() {
-  const url = "https://images.dog.ceo/breeds/shiba/shiba-8.jpg";
+function Loading() {
+  return <p>Loading...</p>;
+}
+
+function Gallery(props) {
+  const { urls } = props;
+  if (urls == null) {
+    return <Loading />;
+  }
   return (
     <div className="columns is-vcentered is-multiline">
-      <div className="column is-3">
-        <Image src={url} />
-      </div>
+      {urls.map((url) => {
+        return (
+          <div key={url} className="column is-3">
+            <Image src={url} />
+          </div>
+        );
+      })}
     </div>
   );
 }
 
 function Main() {
+  // const urls = [
+
+  // ];
+  const urls = null;
   return (
     <main>
       <section className="section">
         <div className="container">
-          <Gallery />
+          <Gallery urls={urls} />
         </div>
       </section>
     </main>
